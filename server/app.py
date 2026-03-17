@@ -11,13 +11,11 @@ customers = ["bob","bill","john","sarah"]
 
 app = Flask(__name__)
 
-@app.route('/contract/<id>')
+@app.route('/contract/<int:id>')
 def contract_id(id):
     for contract in contracts:
         if id == contract['id']:
-            response_body = f"""
-            <h2>{contract['contract_information']}</h2>
-            """
+            response_body = contract['contract_information']
             return make_response(response_body, 200, {})
         else:
             response_body = "Information for the contract id not found!"
